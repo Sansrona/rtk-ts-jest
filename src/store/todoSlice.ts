@@ -109,7 +109,22 @@ export const deleteTodo = createAsyncThunk<
 const todo = createSlice({
   name: "todos",
   initialState,
-  reducers: {},
+  reducers: {
+    addTodo(state, action) {
+      state.list.push({
+        id: new Date().toISOString(),
+        title: action.payload,
+        completed: false,
+      });
+    },
+    toggleComplete(state, action) {
+      const toggledTodo = state.list.find((t) => t.id === action.payload);
+      if (toggledTodo) toggledTodo.completed = !toggledTodo.completed;
+    },
+    removeTodo(state, action) {
+      state.list = state.list.filter((t) => t.id !== action.payload);
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchTodos.pending, (state) => {
@@ -145,6 +160,8 @@ const todo = createSlice({
 });
 
 export default todo.reducer;
+
+export const { addTodo, toggleComplete, removeTodo } = todo.actions;
 
 const isError = (action: AnyAction) => {
   return action.type.endsWith("rejected");
