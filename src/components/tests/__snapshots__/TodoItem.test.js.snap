@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoItem should dispatch actions 1`] = `undefined`;
+
+exports[`TodoItem should render a TodoItem 1`] = `undefined`;

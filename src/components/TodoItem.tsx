@@ -18,7 +18,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
         onChange={() => dispatch(toggleStatus(id))}
       />
       <span>{title}</span>
-      <span onClick={() => dispatch(deleteTodo(id))}>&times;</span>
+      <span role='button' onClick={() => dispatch(deleteTodo(id))}>&times;</span>
     </li>
   );
 };
